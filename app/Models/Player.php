@@ -18,7 +18,6 @@ class Player extends Model
 
     public function showPlayerDuels(){
         return $this->hasMany(duel::class, 'id_first', 'id');
-        
     }
 
 

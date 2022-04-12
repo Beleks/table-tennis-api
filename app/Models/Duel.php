@@ -9,5 +9,9 @@ class Duel extends Model
 {
     use HasFactory;
 
-    
+    public function culcRaiting(){
+        return $this->hasMany(duel::class, 'id_first', 'id');
+    }
+
+
 }

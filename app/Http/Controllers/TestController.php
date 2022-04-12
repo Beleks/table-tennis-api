@@ -117,13 +117,12 @@ class TestController extends Controller
     */
 
     public function testDuels(Player $player) // связь таблиц
-        {
-            //return Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->get(); // вывести матчи в которых участвовал игрок
-        
-            //return $player->showPlayerDuels;
-            return $player->showPlayerDuels()->get();
-        }
-
+    {
+        //return Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->get(); // вывести матчи в которых участвовал игрок
+    
+        //return $player->showPlayerDuels;
+        return $player->showPlayerDuels()->get();
+    }
 
 
 }

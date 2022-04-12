@@ -20,7 +20,7 @@ return new class extends Migration
             $table->char('patronomyc')->nullable();
             $table->unsignedSmallInteger('victories')->default(0);
             $table->unsignedSmallInteger('looses')->default(0);
-            $table->float('raiting')->nullable();
+            $table->float('raiting')->default(100);
             
             $table->timestamps();
         });

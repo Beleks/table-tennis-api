@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('type');
+            $table->char('type');
             $table->unsignedTinyInteger('number_participants');
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class TournamentsSeeder extends Seeder
     public function run()
     {
         $tournaments = [
-            ['type' => '0', 'number_participants' => '4'],
+            ['type' => 'classic', 'number_participants' => '4'],
         ];
 
         foreach ($tournaments as $tournament){
