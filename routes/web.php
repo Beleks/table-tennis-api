@@ -35,10 +35,11 @@ Route::get('/phistory/{player}', [TestController::class, 'testDuels']);
 
 
 Route::get('/players', [PlayerController::class, 'outAllPlayers']);
-
-Route::get('/players/{player}/duelsid', [DuelController::class, 'playerDuelsID']);
-
 Route::get('/duels', [DuelController::class, 'outAllDuels']);
 Route::get('/tournaments', [TournamentController::class, 'outAllTournaments']);
 Route::post('/create/player', [PlayerController::class, 'createPlayer']);
 Route::post('/create/duel', [DuelController::class, 'createDuel']);
+Route::post('/create/tournament', [TournamentController::class, 'createTournament']);
+
+
+Route::get('/players/{player}/duelsid', [DuelController::class, 'playerDuelsID']);

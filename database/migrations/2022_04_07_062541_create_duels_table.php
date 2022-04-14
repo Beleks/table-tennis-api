@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('raiting_first');
             $table->float('raiting_second');
             $table->Integer('id_tournament')->nullable();
-            $table->unsignedTinyInteger('index_match')->nullable();
+            $table->unsignedTinyInteger('index_duel')->nullable();
             $table->timestamps();
         });
     }

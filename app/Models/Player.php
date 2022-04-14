@@ -9,16 +9,25 @@ use PhpParser\Node\Scalar\MagicConst\Function_;
 class Player extends Model
 {
     use HasFactory;
+    protected $table = 'players';
 
     protected $fillable = [
         'surname',
         'name',
         'patronomyc',
+        'victories',
+        'looses',
+        'raiting',
     ];
 
     public function showPlayerDuels(){
         return $this->hasMany(duel::class, 'id_first', 'id');
     }
 
+    public function updatePlayer(){
+
+        
+
+    }
 
 }
