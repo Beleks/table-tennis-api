@@ -14,4 +14,8 @@ class Tournament extends Model
         'type',
         'number_participants',
     ];
+
+    public function outAllTournaments(){
+        return response()->json(Tournament::get()); // вывести всю таблицу Tournament
+    }
 }

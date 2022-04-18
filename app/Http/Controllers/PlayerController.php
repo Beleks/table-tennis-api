@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
+use App\Http\Requests\Player\PlayerRequest;
 
 class PlayerController extends Controller
 {
@@ -12,7 +13,7 @@ class PlayerController extends Controller
         return response()->json(Player::get());
     }
 
-    public function createPlayer(Request $request) // создать нового игрока
+    public function createPlayer(PlayerRequest $request) // создать нового игрока
     {
         Player::create($request->all()); 
     

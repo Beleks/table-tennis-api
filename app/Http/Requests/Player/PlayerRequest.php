@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Player;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DuelRequest extends FormRequest
+class PlayerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class DuelRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,9 @@ class DuelRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_first' => '',
-            'id_second' => '',
-            'score_first' => '',
-            'score_second' => '',
-            'raiting_first' => '',
-            'raiting_second' => '',
+            'surname' => 'alpha',
+            'name' => 'alpha',
+            'patronomyc' => 'alpha',
         ];
     }
 }

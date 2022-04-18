@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Tournament;
 use App\Models\Player;
 use App\Models\Duel;
+use App\Http\Requests\Tournament\TournamentRequest;
 
 class TournamentController extends Controller
 {
@@ -14,15 +15,12 @@ class TournamentController extends Controller
     }
 
 
-    public function createTournament(Request $request){
-
-        $type = $request->input('type');
-        $number_participants = $request->input('number_participants');
+    public function createTournament(TournamentRequest $request){
    
-        $id_tournament = Tournament::create([
-            'type' => $type,
-            'number_participants' => $number_participants
-        ])->id; // создать tournament по данным из request
+        $id_tournament = Tournament::create([ // создать tournament по данным из request
+            'type' => $request->input('type'),
+            'number_participants' => $request->input('number_participants')
+        ])->id; 
 
         
         //return response()->json($request->input('duels')[1]);

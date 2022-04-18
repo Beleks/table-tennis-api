@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Tournament;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PlayerRequest extends FormRequest
+class TournamentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class PlayerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'type' => 'alpha',
+            'number_participants' => 'integer',
+            'duels'  => 'array',
         ];
     }
 }

@@ -20,7 +20,7 @@ class Player extends Model
         'raiting',
     ];
 
-    public function showPlayerDuels(){
+    public function showDuelsId(){
         return $this->hasMany(duel::class, 'id_first', 'id');
     }
 

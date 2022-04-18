@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('duels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('id_first');
-            $table->unsignedSmallInteger('id_second');
+            $table->unsignedInteger('id_first');
+            $table->unsignedInteger('id_second');
             $table->unsignedTinyInteger('score_first');
             $table->unsignedTinyInteger('score_second');
             $table->float('raiting_first');
             $table->float('raiting_second');
-            $table->Integer('id_tournament')->nullable();
+            $table->unsignedInteger('id_tournament')->nullable();
             $table->unsignedTinyInteger('index_duel')->nullable();
             $table->timestamps();
         });

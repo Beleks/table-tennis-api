@@ -42,4 +42,4 @@ Route::post('/create/duel', [DuelController::class, 'createDuel']);
 Route::post('/create/tournament', [TournamentController::class, 'createTournament']);
 
 
-Route::get('/players/{player}/duelsid', [DuelController::class, 'playerDuelsID']);
+Route::get('/players/{player}/duelsid', [DuelController::class, 'duelsID']);

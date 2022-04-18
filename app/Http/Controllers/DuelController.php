@@ -5,21 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Duel;
+use App\Http\Requests\Duel\DuelRequest;
 
 class DuelController extends Controller
 {
-    public function playerDuelsID(Player $player){
-        return response()->json(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->select('id')->get()); // вывести id матчей в которых участвовал игрок
+    public function duelsID(Player $player){ // вывести id матчей в которых участвовал игрок
+        return response()->json(Duel::select('id')->where('id_first', $player->id)->orwhere('id_second', $player->id)->get()); 
+        //return $player->showDuelsId();
     }
 
-    public function outAllDuels(){
-        return response()->json(Duel::get()); // вывести всю таблицу Duels
+    public function outAllDuels(){ // вывести всю таблицу Duels
+        return response()->json(Duel::get()); 
     }
 
-    public function createDuel(Request $request) // создать Duel
+    public function createDuel(DuelRequest $request) // создать Duel
     {
-        $id_first = $request->input('id_first');
-        $id_second = $request->input('id_second');
+
+        $duel = $request->input();
+
+
+        $id_first = $duel['id_first'];
+        $id_second = $duel['id_second'];
 
         $raiting_first = Player::find($id_first)->raiting;
         $raiting_second = Player::find($id_second)->raiting;
@@ -28,8 +34,8 @@ class DuelController extends Controller
         Duel::create([
             'id_first' => $id_first,
             'id_second' => $id_second,
-            'score_first' => $request->input('score_first'),
-            'score_second' => $request->input('score_second'),
+            'score_first' => $duel['score_first'],
+            'score_second' => $duel['score_second'],
             'raiting_first' => $raiting_first,
             'raiting_second' => $raiting_second,
         ]); // создать дуэль по данным из request
@@ -37,7 +43,7 @@ class DuelController extends Controller
 
         
         
-        if ($request->input('score_first') > $request->input('score_second')){
+        if ($duel['score_first'] > $duel['score_second']){
             $tempRaiting = (100 - ($raiting_first - $raiting_second))/10;
             $raiting_first = $raiting_first + $tempRaiting;
             $raiting_second = $raiting_second - $tempRaiting;
