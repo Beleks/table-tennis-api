@@ -5,23 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Duel;
+use App\Models\Tournament;
 use App\Http\Requests\Duel\DuelRequest;
+use App\Http\Resources\Duel\DuelResource;
+use Illuminate\Auth\Events\Validated;
 
 class DuelController extends Controller
 {
-    public function duelsID(Player $player){ // вывести id матчей в которых участвовал игрок
+    public function outAllDuels(){ // вывести всю таблицу Duels
+        //return response()->json(Duel::get()); 
+        return DuelResource::collection(Duel::get());
+    }
+
+    public function showPlayerDuelsID(Player $player){ // вывести id матчей в которых участвовал игрок
         return response()->json(Duel::select('id')->where('id_first', $player->id)->orwhere('id_second', $player->id)->get()); 
         //return $player->showDuelsId();
     }
 
-    public function outAllDuels(){ // вывести всю таблицу Duels
-        return response()->json(Duel::get()); 
+    public function showPlayerDuelsInfo(Player $player){ // вывести информацию о матчах в которых участвовал игрок
+        //return response()->json(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->get()); 
+        return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->get());
     }
+
+
+    public function showTournamentDuelsID(Tournament $tournament){ // вывести id матчей турнира
+        return response()->json(Duel::select('id')->where('id_tournament', $tournament->id)->get()); 
+    }
+
+    public function showTournamentDuelsInfo(Tournament $tournament){ // вывести информацию о матчах турнира
+        //return response()->json(Duel::where('id_tournament', $tournament->id)->get()); 
+        return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->get());
+    }
+
 
     public function createDuel(DuelRequest $request) // создать Duel
     {
-
-        $duel = $request->input();
+        $duel = $request->validated();
 
 
         $id_first = $duel['id_first'];

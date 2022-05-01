@@ -24,10 +24,6 @@ class Player extends Model
         return $this->hasMany(duel::class, 'id_first', 'id');
     }
 
-    public function updatePlayer(){
-
-        
-
-    }
+    
 
 }

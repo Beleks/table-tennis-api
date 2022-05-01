@@ -7,26 +7,28 @@ use App\Models\Tournament;
 use App\Models\Player;
 use App\Models\Duel;
 use App\Http\Requests\Tournament\TournamentRequest;
+use App\Http\Resources\Tournament\TournamentResource;
 
 class TournamentController extends Controller
 {
-    public function outAllTournaments(){
-        return response()->json(Tournament::get()); // вывести всю таблицу Tournament
+    public function outAllTournaments(){  // вывести всю таблицу Tournament
+        //return response()->json(Tournament::get()); 
+        return TournamentResource::collection(Tournament::get());
     }
 
 
     public function createTournament(TournamentRequest $request){
    
         $id_tournament = Tournament::create([ // создать tournament по данным из request
-            'type' => $request->input('type'),
-            'number_participants' => $request->input('number_participants')
+            'type' => $request->validated('type'),
+            'number_participants' => $request->validated('number_participants')
         ])->id; 
 
         
         //return response()->json($request->input('duels')[1]);
 
         $counter = 0;
-        foreach ($request->input('duels') as $duel){
+        foreach ($request->validated('duels') as $duel){
             $counter++;
             $id_first = $duel['id_first'];
             $id_second = $duel['id_second'];
