@@ -14,10 +14,10 @@ class Player extends Model
     protected $fillable = [
         'surname',
         'name',
-        'patronomyc',
+        'patronymic',
         'victories',
         'looses',
-        'raiting',
+        'rating',
     ];
 
     public function showDuelsId(){

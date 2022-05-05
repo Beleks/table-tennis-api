@@ -17,10 +17,10 @@ class DuelsSeeder extends Seeder
     public function run()
     {
         $duels = [
-            ['id_first' => 1, 'id_second' => 2, 'score_first' => 3, 'score_second' => 0, 'raiting_first' => 110, 'raiting_second' => 120, 'id_tournament' => NULL, 'index_duel' => NULL],
-            ['id_first' => 3, 'id_second' => 2, 'score_first' => 2, 'score_second' => 1, 'raiting_first' => 130.64, 'raiting_second' => 112.8, 'id_tournament' => 1, 'index_duel' => 0],
-            ['id_first' => 1, 'id_second' => 4, 'score_first' => 0, 'score_second' => 3, 'raiting_first' => 125.643421235, 'raiting_second' => 110, 'id_tournament' => 1, 'index_duel' => 1],
-            ['id_first' => 4, 'id_second' => 3, 'score_first' => 3, 'score_second' => 0, 'raiting_first' => 117, 'raiting_second' => 132, 'id_tournament' => 1, 'index_duel' => 2],
+            ['id_first' => 1, 'id_second' => 2, 'score_first' => 3, 'score_second' => 0, 'rating_first' => 110, 'rating_second' => 120, 'id_tournament' => NULL, 'index_duel' => NULL],
+            ['id_first' => 3, 'id_second' => 2, 'score_first' => 2, 'score_second' => 1, 'rating_first' => 130.64, 'rating_second' => 112.8, 'id_tournament' => 1, 'index_duel' => 0],
+            ['id_first' => 1, 'id_second' => 4, 'score_first' => 0, 'score_second' => 3, 'rating_first' => 125.643421235, 'rating_second' => 110, 'id_tournament' => 1, 'index_duel' => 1],
+            ['id_first' => 4, 'id_second' => 3, 'score_first' => 3, 'score_second' => 0, 'rating_first' => 117, 'rating_second' => 132, 'id_tournament' => 1, 'index_duel' => 2],
         ];
 
         foreach ($duels as $duel){

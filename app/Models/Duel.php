@@ -14,22 +14,10 @@ class Duel extends Model
         'id_second',
         'score_first',
         'score_second',
-        'raiting_first',
-        'raiting_second',
+        'rating_first',
+        'rating_second',
         'id_tournament',
         'index_duel', 
     ];
-/*
-    protected $attributes = [
-        'raiting_first' => 0,
-        'raiting_second'=> 0,
-    ];*/
-
-
-/*
-    public function culcRaiting(){
-        return $this->hasMany(duel::class, 'id_first', 'id');
-    }
-*/
 
 }

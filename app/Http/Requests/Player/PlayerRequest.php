@@ -26,7 +26,7 @@ class PlayerRequest extends FormRequest
         return [
             'surname' => 'alpha',
             'name' => 'alpha',
-            'patronomyc' => 'alpha',
+            'patronymic' => 'alpha',
         ];
     }
 }

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedInteger('id_second');
             $table->unsignedTinyInteger('score_first');
             $table->unsignedTinyInteger('score_second');
-            $table->float('raiting_first');
-            $table->float('raiting_second');
+            $table->float('rating_first');
+            $table->float('rating_second');
             $table->unsignedInteger('id_tournament')->nullable();
             $table->unsignedTinyInteger('index_duel')->nullable();
             $table->timestamps();

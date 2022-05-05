@@ -18,10 +18,10 @@ class PlayerResource extends JsonResource
             'id' => $this->id,
             'surname' => $this->surname,
             'name' => $this->name,
-            'patronomyc' => $this->patronomyc,
+            'patronymic' => $this->patronymic,
             'victories' => $this->victories,
             'looses' => $this->looses,
-            'raiting' => $this->raiting
+            'rating' => $this->rating
         ];
     }
 }

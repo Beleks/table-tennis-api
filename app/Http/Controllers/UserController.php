@@ -12,6 +12,6 @@ class UserController extends Controller
     public function reg(){
         $password = Hash::make('3223');
 
-        return response()->json(User::create(['name' => 'test', 'email' => 'test@test.test', 'password' => $password]));
+        return response()->json(User::create(['login' => 'test', 'password' => $password]));
     }
 }

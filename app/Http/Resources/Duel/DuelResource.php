@@ -20,8 +20,8 @@ class DuelResource extends JsonResource
             'id_second' => $this->id_second,
             'score_first' => $this->score_first,
             'score_second' => $this->score_second,
-            'raiting_first' => $this->raiting_first,
-            'raiting_second' => $this->raiting_second,
+            'rating_first' => $this->rating_first,
+            'rating_second' => $this->rating_second,
             'id_tournament' => $this->id_tournament,
             'index_duel' => $this->index_duel
         ];

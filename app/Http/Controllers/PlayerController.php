@@ -9,7 +9,7 @@ use App\Http\Resources\Player\PlayerResource;
 
 class PlayerController extends Controller
 {
-    public function outAllPlayers() //вывести всю таблицу Player
+    public function showAllPlayers() //вывести всю таблицу Player
     {
         //return response()->json(Player::get());
         return PlayerResource::collection(Player::get());
@@ -22,7 +22,7 @@ class PlayerController extends Controller
         Player::create([
             'surname' => $player['surname'],
             'name' => $player['name'],
-            'patronomyc' => $player['patronomyc']
+            'patronymic' => $player['patronymic']
         ]); 
 
         return response()->json($player);

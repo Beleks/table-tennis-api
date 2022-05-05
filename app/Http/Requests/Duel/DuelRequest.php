@@ -28,6 +28,7 @@ class DuelRequest extends FormRequest
             'id_second' => 'integer',
             'score_first' => 'integer',
             'score_second' => 'integer',
+            'index_duel' => ['integer','nullable']
         ];
     }
 }

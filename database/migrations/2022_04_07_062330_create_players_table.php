@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->char('surname');
             $table->char('name');
-            $table->char('patronomyc')->nullable();
+            $table->char('patronymic')->nullable();
             $table->unsignedSmallInteger('victories')->default(0);
             $table->unsignedSmallInteger('looses')->default(0);
-            $table->float('raiting')->default(100);
+            $table->float('rating')->default(100);
             
             $table->timestamps();
         });
