@@ -12,7 +12,7 @@ class PlayerController extends Controller
     public function showAllPlayers() //вывести всю таблицу Player
     {
         //return response()->json(Player::get());
-        return PlayerResource::collection(Player::get());
+        return PlayerResource::collection(Player::orderByDesc('rating')->get());
     }
 
     public function createPlayer(PlayerRequest $request) // создать нового игрока

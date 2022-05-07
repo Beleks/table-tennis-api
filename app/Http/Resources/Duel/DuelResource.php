@@ -23,7 +23,8 @@ class DuelResource extends JsonResource
             'rating_first' => $this->rating_first,
             'rating_second' => $this->rating_second,
             'id_tournament' => $this->id_tournament,
-            'index_duel' => $this->index_duel
+            'index_duel' => $this->index_duel,
+            'created_at' => $this->created_at->format('d-m-Y')
         ];
     }
 }
