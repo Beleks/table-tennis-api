@@ -38,7 +38,7 @@ class DuelController extends Controller
     }
 
 
-    public function createDuel($request, $id_tournament = NULL) // создать Duel
+    public function createDuel(DuelRequest $request, $id_tournament = NULL) // создать Duel
     {
         $duel = $request->all();
 
