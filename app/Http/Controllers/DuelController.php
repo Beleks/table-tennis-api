@@ -14,7 +14,7 @@ class DuelController extends Controller
 {
     public function showAllDuels(){ // вывести всю таблицу Duels
         //return response()->json(Duel::get()); 
-        return DuelResource::collection(Duel::latest()->paginate());
+        return DuelResource::collection(Duel::orderByDesc('id')->paginate());
     }
 
     public function showPlayerDuelsID(Player $player){ // вывести id матчей в которых участвовал игрок
@@ -24,7 +24,7 @@ class DuelController extends Controller
 
     public function showPlayerDuelsInfo(Player $player){ // вывести информацию о матчах в которых участвовал игрок
         //return response()->json(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->get()); 
-        return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->latest()->paginate());
+        return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->paginate());
     }
 
 
@@ -34,7 +34,7 @@ class DuelController extends Controller
 
     public function showTournamentDuelsInfo(Tournament $tournament){ // вывести информацию о матчах турнира
         //return response()->json(Duel::where('id_tournament', $tournament->id)->get()); 
-        return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->latest()->get());
+        return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->orderByDesc('id')->get());
     }
 
 

@@ -15,7 +15,7 @@ class TournamentController extends Controller
 {
     public function showAllTournaments(){  // вывести всю таблицу Tournament
         //return response()->json(Tournament::get()); 
-        return TournamentResource::collection(Tournament::latest()->paginate());
+        return TournamentResource::collection(Tournament::orderByDesc('id')->paginate());
     }
 
 
