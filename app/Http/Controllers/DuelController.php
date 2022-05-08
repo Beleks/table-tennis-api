@@ -84,7 +84,7 @@ class DuelController extends Controller
                 'looses' => $looses_second,
                 'rating' => $rating_second
             ]);
-        } else {
+        } elseif($duel['score_first'] < $duel['score_second']) {
             $temprating = (100 - ($rating_second - $rating_first))/10;
             $rating_second = $rating_second + $temprating;
             $rating_first = $rating_first - $temprating;
@@ -106,6 +106,8 @@ class DuelController extends Controller
                 'victories' => $victories_second,
                 'rating' => $rating_second
             ]);
+        } else {
+            return response()->json('Ничья недоступна', 400);
         }
         //return gettype($duel);
         //var_dump($duel);
