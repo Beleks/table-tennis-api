@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::post('/login', [TournamentController::class, 'outAllTournaments']);
 
 
-//Route::get( '/create/user', [UserController::class, 'reg']);
+Route::get( '/create/user', [UserController::class, 'reg']);
 
 
 
