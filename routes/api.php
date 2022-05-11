@@ -35,7 +35,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::match(['post', 'patch'], '/create/tournament', [TournamentController::class, 'createTournament']);
 });
 
-
 //Authorization
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
@@ -43,6 +42,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     //Route::post('refresh', [AuthController::class, 'refresh']);
     //Route::post('me', [AuthController::class, 'me']);
 });
+
 
 //Others
 Route::get('/players/{player}/duelsid', [DuelController::class, 'showPlayerDuelsID']);

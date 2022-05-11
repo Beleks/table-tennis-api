@@ -17,6 +17,11 @@ class PlayerController extends Controller
 
     public function createPlayer(PlayerRequest $request) // создать нового игрока
     {
+
+        if(Player::orderByDesc('id')->first()->id==50) {
+            return response()->json('Достигнуто максимальное количество игрков', 500);
+        }
+
         $player = $request->validated();
 
         Player::create([
@@ -25,13 +30,13 @@ class PlayerController extends Controller
             'patronymic' => $player['patronymic']
         ]); 
 
-        return response()->json($player);
+        //return response()->json($player);
     }
 
     public function editPlayer(PlayerRequest $request, Player $player) // редактировать данные игрока
     {
         $player->update($request->validated());
 
-        return response()->json($request->validated());
+        //return response()->json($request->validated());
     }
 }
