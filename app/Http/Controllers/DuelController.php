@@ -50,18 +50,6 @@ class DuelController extends Controller
         $rating_second = Player::find($id_second)->rating;
 
         
-        Duel::create([ // создать дуэль по данным из request
-            'id_first' => $id_first,
-            'id_second' => $id_second,
-            'score_first' => $duel['score_first'],
-            'score_second' => $duel['score_second'],
-            'rating_first' => $rating_first,
-            'rating_second' => $rating_second,
-            'id_tournament' => $id_tournament,
-            'index_duel' => $duel['index_duel']
-        ]); 
-
-        
         if ($duel['score_first'] > $duel['score_second']){
             $temprating = (100 - ($rating_first - $rating_second))/10;
             $rating_first = $rating_first + $temprating;
@@ -109,6 +97,19 @@ class DuelController extends Controller
         } else {
             return response()->json('Ничья недоступна', 400);
         }
+
+        
+        Duel::create([ // создать дуэль по данным из request
+            'id_first' => $id_first,
+            'id_second' => $id_second,
+            'score_first' => $duel['score_first'],
+            'score_second' => $duel['score_second'],
+            'rating_first' => $rating_first,
+            'rating_second' => $rating_second,
+            'id_tournament' => $id_tournament,
+            'index_duel' => $duel['index_duel']
+        ]); 
+        
         //return gettype($duel);
         //var_dump($duel);
         //return response()->json($id_second);
