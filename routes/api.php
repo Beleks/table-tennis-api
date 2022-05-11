@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get( '/create/user', [UserController::class, 'reg']);
 
 
-
 //All Users
 Route::get('/players', [PlayerController::class, 'showAllPlayers']);
 Route::get('/duels', [DuelController::class, 'showAllDuels']);
@@ -30,13 +29,11 @@ Route::get('/tournaments/{tournament}/duelsinfo', [DuelController::class, 'showT
 
 //Authrized Users
 Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('/create/player', [PlayerController::class, 'createPlayer']);
+    Route::patch('/edit/player/{player}', [PlayerController::class, 'editPlayer']);
+    Route::match(['post', 'patch'], '/create/duel', [DuelController::class, 'createDuel']);
+    Route::match(['post', 'patch'], '/create/tournament', [TournamentController::class, 'createTournament']);
 });
-
-
-Route::post('/create/player', [PlayerController::class, 'createPlayer']);
-Route::patch('/edit/player/{player}', [PlayerController::class, 'editPlayer']);
-Route::match(['post', 'patch'], '/create/duel', [DuelController::class, 'createDuel']);
-Route::match(['post', 'patch'], '/create/tournament', [TournamentController::class, 'createTournament']);
 
 
 //Authorization
