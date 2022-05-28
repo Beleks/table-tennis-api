@@ -1,23 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Http\Requests\Player\PlayerRequest;
 use App\Http\Resources\Player\PlayerResource;
 
 class PlayerController extends Controller
 {
-    public function showAllPlayers() //вывести всю таблицу Player
+    public function showAllPlayers()
     {
-        //return response()->json(Player::get());
         return PlayerResource::collection(Player::orderByDesc('rating')->get());
     }
 
-    public function createPlayer(PlayerRequest $request) // создать нового игрока
+    public function createPlayer(PlayerRequest $request)
     {
-
         if(Player::orderByDesc('id')->first()->id==50) {
             return response()->json('Достигнуто максимальное количество игрков', 500);
         }
@@ -29,14 +25,10 @@ class PlayerController extends Controller
             'name' => $player['name'],
             'patronymic' => $player['patronymic']
         ]); 
-
-        //return response()->json($player);
     }
 
-    public function editPlayer(PlayerRequest $request, Player $player) // редактировать данные игрока
+    public function editPlayer(PlayerRequest $request, Player $player)
     {
         $player->update($request->validated());
-
-        //return response()->json($request->validated());
     }
 }

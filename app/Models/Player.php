@@ -20,10 +20,4 @@ class Player extends Model
         'rating',
     ];
 
-    public function showDuelsId(){
-        return $this->hasMany(duel::class, 'id_first', 'id');
-    }
-
-    
-
 }
