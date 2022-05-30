@@ -22,10 +22,10 @@ Route::get( '/create/user', [UserController::class, 'reg']);
 
 //All Users
 Route::get('/players', [PlayerController::class, 'showAllPlayers']);
-Route::get('/duels', [DuelController::class, 'showAllDuels']);
+Route::get('/duels', [DuelController::class, 'showDuels']);
 Route::get('/tournaments', [TournamentController::class, 'showAllTournaments']);
-Route::get('/players/{player}/duelsinfo', [DuelController::class, 'showPlayerDuelsInfo']);
-Route::get('/tournaments/{tournament}/duelsinfo', [DuelController::class, 'showTournamentDuelsInfo']);
+Route::get('/players/{player}/duelsinfo', [DuelController::class, 'showPlayerDuels']);
+Route::get('/tournaments/{tournament}/duelsinfo', [DuelController::class, 'showTournamentDuels']);
 
 //Authrized Users
 Route::group(['middleware' => 'jwt.auth'], function () {

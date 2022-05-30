@@ -9,16 +9,29 @@ use App\Http\Resources\Duel\DuelResource;
 
 class DuelController extends Controller
 {
-    public function showAllDuels(){ 
-        return DuelResource::collection(Duel::orderByDesc('id')->cursorPaginate());
+    public function showDuels(){ 
+        return DuelResource::collection(Duel::where('id_tournament', NULL)->orderByDesc('id')->cursorPaginate());
     }
 
-    public function showPlayerDuelsInfo(Player $player){ 
-        return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->cursorPaginate());
-    }
 
-    public function showTournamentDuelsInfo(Tournament $tournament){ 
-        return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->orderByDesc('id')->get());
+    //public function showPlayerDuels(Player $player){ 
+        //return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->cursorPaginate());
+        //$sh = DuelController::showDuels()->where('id_first', $player->id)->orwhere('id_second', $player->id);//Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->cursorPaginate();
+        //$th = ;
+        //$sh = Duel::/*where('id_tournament', NULL)->*/where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->get();
+        
+        /*
+        foreach ($sh as $id_tournament => $title) {
+            echo $title;
+        }*/
+        
+        //$sd = $sh;
+        //$th = Tournament::where('id', $sh->$id_tournament);
+        //return response()->json($title/*['duels' => $sd, 'tournaments' => $th]*/);
+    //}
+
+    public function showTournamentDuels(Tournament $tournament){ 
+        return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->orderBy('index_duel')->get());
     }
 
     public function createDuel(DuelRequest $request, $id_tournament = NULL) 
