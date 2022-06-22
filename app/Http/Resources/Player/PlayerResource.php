@@ -21,7 +21,7 @@ class PlayerResource extends JsonResource
             'name' => $this->name,
             'patronymic' => $this->patronymic,
             'victories' => $this->victories,
-            'looses' => $this->looses,
+            'all_games' => $this->all_games,
             'rating' => $this->rating
         ];
     }

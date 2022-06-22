@@ -31,4 +31,33 @@ class PlayerController extends Controller
     {
         $player->update($request->validated());
     }
+
+    public function updatePlayers($id_winner, $id_looser){
+
+        $winner = Player::find($id_winner);
+        $looser = Player::find($id_looser);
+
+        $delta_rating = (100 - ($winner['rating'] - $looser['rating']))/10;
+        $winner['rating'] += $delta_rating;
+        $looser['rating'] -= $delta_rating;
+
+        if($looser['rating'] < 1){
+            $looser['rating'] = 1;
+        }
+
+        $winner['victories'] += 1;
+        $winner['all_games'] += 1;
+        $looser['all_games'] += 1;
+
+        Player::find($id_winner)->update([ 
+            'victories' => $winner['victories'],
+            'all_games' => $winner['all_games'],
+            'rating' => $winner['rating'],
+        ]);
+
+        Player::find($id_looser)->update([ 
+            'all_games' => $looser['all_games'],
+            'rating' => $looser['rating'],
+        ]);
+    }
 }

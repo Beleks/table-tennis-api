@@ -10,25 +10,16 @@ use App\Http\Resources\Duel\DuelResource;
 class DuelController extends Controller
 {
     public function showDuels(){ 
-        return DuelResource::collection(Duel::where('id_tournament', NULL)->orderByDesc('id')->cursorPaginate());
+        return DuelResource::collection(Duel::whereNull('id_tournament')->orderByDesc('id')->cursorPaginate());
     }
 
 
-    //public function showPlayerDuels(Player $player){ 
-        //return DuelResource::collection(Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->cursorPaginate());
-        //$sh = DuelController::showDuels()->where('id_first', $player->id)->orwhere('id_second', $player->id);//Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->cursorPaginate();
-        //$th = ;
-        //$sh = Duel::/*where('id_tournament', NULL)->*/where('id_first', $player->id)->orwhere('id_second', $player->id)->orderByDesc('id')->get();
+    public function showPlayerDuels(Player $player){ 
+        $sh = Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->whereNull('id_tournament')->orderByDesc('id')->get();
+        $temp = Duel::where('id_first', $player->id)->orwhere('id_second', $player->id)->whereNotNull('id_tournament')->orderByDesc('id')->pluck('id_tournament');
         
-        /*
-        foreach ($sh as $id_tournament => $title) {
-            echo $title;
-        }*/
-        
-        //$sd = $sh;
-        //$th = Tournament::where('id', $sh->$id_tournament);
-        //return response()->json($title/*['duels' => $sd, 'tournaments' => $th]*/);
-    //}
+        return response()->json(/*$title*/['duels' => $sh, 'tournaments' => $temp]);
+    }
 
     public function showTournamentDuels(Tournament $tournament){ 
         return DuelResource::collection(Duel::where('id_tournament', $tournament->id)->orderBy('index_duel')->get());
@@ -41,51 +32,15 @@ class DuelController extends Controller
         $id_first = $duel['id_first'];
         $id_second = $duel['id_second'];
 
-        $rating_first_for_duel = Player::find($id_first)->rating;
-        $rating_second_for_duel = Player::find($id_second)->rating;
+        $rating_first = Player::find($id_first)->rating;
+        $rating_second = Player::find($id_second)->rating;
 
+        $playerController = new PlayerController();
+        
         if ($duel['score_first'] > $duel['score_second']){
-            $delta_rating = (100 - ($rating_first_for_duel - $rating_second_for_duel))/10;
-            $rating_first = $rating_first_for_duel + $delta_rating;
-            $rating_second = $rating_second_for_duel - $delta_rating;
-
-            if($rating_second < 1){
-                $rating_second = 1;
-            }
-
-            $victories_first = Player::find($id_first)->victories + 1;
-            $looses_second = Player::find($id_second)->looses + 1;
-            
-            Player::find($id_first)->update([ 
-                'victories' => $victories_first,
-                'rating' => $rating_first
-            ]);
-    
-            Player::find($id_second)->update([ 
-                'looses' => $looses_second,
-                'rating' => $rating_second
-            ]);
+            $playerController->updatePlayers($id_first, $id_second);
         } elseif($duel['score_first'] < $duel['score_second']) {
-            $delta_rating = (100 - ($rating_second_for_duel - $rating_first_for_duel))/10;
-            $rating_second = $rating_second_for_duel + $delta_rating;
-            $rating_first = $rating_first_for_duel - $delta_rating;
-
-            if($rating_first < 1){
-                $rating_first = 1;
-            }
-
-            $looses_first = Player::find($id_first)->looses + 1;
-            $victories_second = Player::find($id_second)->victories + 1;
-
-            Player::find($id_first)->update([ 
-                'looses' => $looses_first,
-                'rating' => $rating_first
-            ]);
-    
-            Player::find($id_second)->update([ 
-                'victories' => $victories_second,
-                'rating' => $rating_second
-            ]);
+            $playerController->updatePlayers($id_second, $id_first);
         } else {
             return response()->json('Ничья недоступна', 400);
         }
@@ -95,8 +50,8 @@ class DuelController extends Controller
             'id_second' => $id_second,
             'score_first' => $duel['score_first'],
             'score_second' => $duel['score_second'],
-            'rating_first' => $rating_first_for_duel,
-            'rating_second' => $rating_second_for_duel,
+            'rating_first' => $rating_first,
+            'rating_second' => $rating_second,
             'id_tournament' => $id_tournament,
             'index_duel' => $duel['index_duel']
         ]); 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->char('name');
             $table->char('patronymic')->nullable();
             $table->unsignedSmallInteger('victories')->default(0);
-            $table->unsignedSmallInteger('looses')->default(0);
+            $table->unsignedSmallInteger('all_games')->default(0);
             $table->float('rating')->default(100);
             
             $table->timestamps();

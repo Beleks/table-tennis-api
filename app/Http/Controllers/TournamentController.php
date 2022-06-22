@@ -27,3 +27,15 @@ class TournamentController extends Controller
         }
     }
 }
+
+/*
+stage_count=1;
+temp=stage_count;
+for(i=match.lenght-1;i>=0;i--){
+    match[i][stage] = stage_count;
+    if (match.lenght - i==temp){
+
+        stage_count=stage_count*2;
+        temp=1 + stage_count*2;
+    }
+}*/

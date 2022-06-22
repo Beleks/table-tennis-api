@@ -17,10 +17,10 @@ class PlayersSeeder extends Seeder
     public function run()
     {
         $players = [
-            ['surname' => 'Сидоров', 'name' => 'Сидор', 'patronymic' => 'Сидорович', 'victories' => 8, 'looses' => 5, 'rating' => 109],
-            ['surname' => 'Иванов', 'name' => 'Иван', 'patronymic' => 'Иванович', 'victories' => 9, 'looses' => 3, 'rating' => 119],
-            ['surname' => 'Петров', 'name' => 'Пётр', 'patronymic' => 'Петрович', 'victories' => 12, 'looses' => 7, 'rating' => 125],
-            ['surname' => 'Данилов', 'name' => 'Данил', 'victories' => 5, 'looses' => 9, 'rating' => 121],
+            ['surname' => 'Сидоров', 'name' => 'Сидор', 'patronymic' => 'Сидорович', 'victories' => 8, 'all_games' => 14, 'rating' => 109],
+            ['surname' => 'Иванов', 'name' => 'Иван', 'patronymic' => 'Иванович', 'victories' => 9, 'all_games' => 10, 'rating' => 119],
+            ['surname' => 'Петров', 'name' => 'Пётр', 'patronymic' => 'Петрович', 'victories' => 12, 'all_games' => 16, 'rating' => 125],
+            ['surname' => 'Данилов', 'name' => 'Данил', 'victories' => 5, 'all_games' => 5, 'rating' => 121],
             ['surname' => 'Максимов', 'name' => 'Максим'],
 
         ];

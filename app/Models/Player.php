@@ -16,7 +16,7 @@ class Player extends Model
         'name',
         'patronymic',
         'victories',
-        'looses',
+        'all_games',
         'rating',
     ];
 
